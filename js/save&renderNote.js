@@ -59,6 +59,11 @@ export function dataValidationHandler() {
 export function sortNotesHandler(state) {
 
   const notes = state.notes;
+
+  if ( !Array.isArray(notes) ) {
+    notes = [];
+  }
+
   const sortNotes = [...notes].sort( (a, b) => {
 
     if (a.isPin === b.isPin) {
