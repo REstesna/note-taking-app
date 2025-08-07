@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/output.css">
+
+    <link rel="stylesheet" href="vendor/noty/noty.min.css">
+    <script src="vendor/noty/noty.min.js"></script>
+
+
+    <title>Note</title>
+</head>
+
+<!-- add / dark_theme / class to body for dark theme   -->
+
+<body class="bg-[var(--main-white-color)] font-jost-medium selection:bg-[var(--main-color)] ">
+    
+    
+
+  <!-- add / sticky_navbar / class to have a sticky navbar  -->
+
+  <header id="main-header-app" class="container  flex items-center justify-between border-b border-b-[var(--second-black-color)] ">
+    <h1 id="app-title" class="text-2xl font-jost-bold text-[var(--second-black-color)]">RElax Note</h1>
+    <!-- desktop menu  -->
+    <div class="hidden sm:flex items-center justify-between gap-2">
+
+      <!-- open search modal button  -->
+      <button id="" class="btn-style open-search-modal-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          </svg>
+      </button>
+
+      <!-- filter  -->
+      <div id="navbar_filter-btn" class="relative">
+        
+        <div class="btn-style flex justify-between items-center gap-8 capitalize"> filter 
+          <!-- <img class="w-4 h-4" src="icon/arrow.svg" alt="arrow">  -->
+           <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
+            </svg>
+
+        </div>
+
+        <!-- filter options  -->
+         <!-- remove / scale-y-0 / class to show filter options  -->
+        <ul id="navbar-filter-sub_menu" class="absolute text-[var(--main-black-color)] top-10 origin-top scale-y-0 z-20 w-full shadow py-1 bg-[var(--main-white-color)]/40 border border-[var(--main-color)] backdrop-blur-[2px] rounded-[var(--main-border-radius)]">
+          <li class="filter-option py-1 px-2 hover:bg-[var(--main-color)] hover:text-[var(--static-black-color)] cursor-pointer capitalize hover:scale-101" data-filter="all">All</li>
+          <li class="filter-option py-1 px-2 hover:bg-[var(--main-color)] hover:text-[var(--static-black-color)] cursor-pointer capitalize hover:scale-101" data-filter="starred">Starred</li>
+          <li class="filter-option py-1 px-2 hover:bg-[var(--main-color)] hover:text-[var(--static-black-color)] cursor-pointer capitalize hover:scale-101" data-filter="pinned">Pinned</li>
+        </ul>
+
+      </div>
+     
+
+      <!-- add new note button  -->
+      <button class="flex items-center gap-2  btn-style add_new_note">
+        New Note 
+        <!-- <img class="w-6 h-6" src="icon/plus.svg" alt=""> -->
+         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+         </svg>
+      </button>
+
+
+
+       <!-- dark / light button  -->
+      <button class="btn-style hover:scale-104! change-theme_btn overflow-hidden max-w-[56px]">
+
+        <div id="sun-moon_icons-container" class="flex justify-center items-center gap-4 min-w-max">
+
+            <svg id="moon_svg" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>
+
+            <svg id="sun_svg" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+            </svg>
+        </div>
+
+
+      </button>
+
+    </div>
+
+
+    <!-- hambergermenu button  -->
+    <button id="hambergermenu_open-btn" class="sm:hidden btn-style hover:scale-104!">
+      <img class="w-6 h-6" src="icon/hambergermenu.svg" alt="">
+    </button>
+
+
+    <!-- mobile menu  -->
+
+    <!-- remove / hide__mobile-menu / class to show menu  -->
+     <div id="hambergermenu" class="hide__mobile-menu  text-[var(--main-black-color)] fixed  top-0 right-0 bottom-0 min-h-[100vh] bg-[var(--main-color)]/80 backdrop-blur-sm shadow-xl z-50 w-64 py-8 px-4">
+      
+      <div class="flex flex-col gap-2">
+
+        <!-- close button container -->
+        <div  class="flex justify-end ">
+          <button id="hambergermenu_close-btn" class="btn-style bg-transparent! p-0! hover:shadow-none! hover:scale-100! ">
+          <img class="w-6 h-6" src="icon/cross.svg" alt="">
+          </button>
+        </div>
+
+      <!-- add new note button  -->
+
+        <button class="btn-style bg-[var(--main-white-color)]! flex justify-between w-full items-center mt-6 add_new_note">
+          New Note 
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+              <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+            </svg>
+
+        </button>
+        
+        <!-- filter -->
+        <!-- remove / max-h-10  / class to show options -->
+        <div id="mobile-filter-parent" class="btn-style bg-[var(--main-white-color)]! flex flex-col justify-between items-center max-h-10 overflow-hidden w-full ">
+
+            <!-- filter title  -->
+            <div class="flex justify-between items-center w-full">
+              filter
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                  <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
+              </svg>
+
+            </div>
+
+            <!-- filter options -->
+             <ul class=" mt-1 w-full flex flex-col divide-y ">
+                <li class="py-2 filter-option" data-filter="all">All</li>
+                <li class="py-2 filter-option" data-filter="starred">Starred</li>
+                <li class="py-2 filter-option" data-filter="pinned">Pinned</li>
+             </ul>
+        </div>
+        
+
+          <button class="open-search-modal-btn btn-style bg-[var(--main-white-color)]! flex justify-between w-full items-center">
+          Search Note 
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+
+        </button>
+
+        <!-- dark light button -->
+         <button class="btn-style  flex justify-center items-center max-h-9 overflow-hidden bg-[var(--main-white-color)]! change-theme_btn">
+          <!-- <img class="w-6 h-6" src="icon/moon.svg" alt=""> -->
+            <div id="sun-moon_icons-container_mobile" class="flex justify-center items-center flex-col min-h-max gap-4 translate-y-[19px]">
+
+            <svg id="moon_svg" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>
+
+            <svg id="sun_svg" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+            </svg>
+        </div>
+
+         </button>
+
+      </div>
+
+
+     </div>
+
+
+  </header>
+  
+  <main class="container">
+    <!-- notes container  -->
+    <div id="notes-container" class="grid md:grid-cols-2 grid-cols-1 gap-2 auto-rows-[160px]">
+
+      <div class="text-[var(--main-black-color)] text-center col-start-1 col-span-2 text-2xl py-5">Empty...</div>
+        
+    </div>
+  </main>
+  
+
+  
+  <!-- add / flex / class to show modal -->
+   <!-- add new note modal  -->
+  <dialog id="add_new_note_modal" class="dialog_style" >
+
+
+      <div id="add_new_note_inner_container" class="dialog-modal_style">
+        <!-- modal header  -->
+      <div class=" flex gap-48 items-center justify-between  ">
+          <h2 class="font-jost-bold text-xl text-[var(--main-black-color)]">New Note</h2>
+          <div class="cursor-pointer close_new_note_btn">
+              <!-- <img class="w-4 h-4" src="icon/cross.svg" alt="close modal"> -->
+
+              <svg class="size-6 text-[var(--main-black-color)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+
+          </div>
+      </div> 
+
+      <!-- title input -->
+       <div class="flex flex-col gap-1 justify-center mt-4 ">
+        <label class="font-jost-light" for="new-note-title-input">Title:</label>
+        <div id="title-input-container" class="flex justify-between items-center border border-[var(--main-black-color)] rounded-[var(--main-border-radius)] px-2 py-1 font-jost-medium text-[var(--main-black-color)]">
+          <input id="new-note-title-input" class="outline-0 w-full border-0" type="text" placeholder="Enter note title..." autocomplete="off">
+          <span id="limit-title-span" class="border-l pl-2">30</span>
+        </div>
+       </div>
+       
+       
+       <!-- description input -->
+        <div class="flex flex-col gap-1 justify-center mt-2">
+         <label class="font-jost-light" for="new-note-description-textarea">Description:</label>
+         <textarea id="new-note-description-textarea" class="max-h-80 border border-[var(--main-black-color)] rounded-[var(--main-border-radius)] outline-0 px-2 py-1 font-jost-medium font-[var(--main-black-color)]" placeholder="Enter your note here..."></textarea>
+        </div>
+
+        <!-- select custom color  -->
+         <div class="mt-3 flex-col flex gap-2">
+          <span class="font-jost-light"> Note Color: </span>
+          <div class="flex justify-between items-center gap-1">
+            <span class="note-color-span bg-[var(--main-color)] " data-note-color="--main-color">
+              <img class="w-5 h-5" src="icon/tick.svg" alt="">
+            </span>
+            <span class="note-color-span  bg-[var(--note-color-first)] " data-note-color="--note-color-first">
+              <!-- <img class="w-5 h-5" src="icon/tick.svg" alt=""> -->
+            </span>
+            <span class="note-color-span bg-[var(--note-color-second)] " data-note-color="--note-color-second">
+              <!-- <img class="w-5 h-5" src="icon/tick.svg" alt=""> -->
+            </span>
+            <span class="note-color-span bg-[var(--note-color-third)] " data-note-color="--note-color-third">
+              <!-- <img class="w-5 h-5" src="icon/tick.svg" alt=""> -->
+            </span>
+          </div>
+         </div>
+
+        <!-- modal actions -->
+         <div class="flex items-center gap-2 justify-end mt-4">
+          <button class="close_new_note_btn  transition-all duration-300 py-1 px-4 rounded-[var(--main-border-radius)] cursor-pointer ">Cancel</button>
+          <button id="save-note-btn" class="hover:bg-[var(--main-color)]/50 py-1 px-4 transition-all duration-300 rounded-[var(--main-border-radius)] cursor-pointer bg-[var(--main-color)] text-[var(--static-black-color)]">Save Note</button>
+         </div>
+
+      </div>
+
+  </dialog>
+
+  <!-- add / flex / class to show modal -->
+  <!-- search note  -->
+  <dialog id="search_modal" class="dialog_style">
+
+    <div id="search_note_inner_container" class="dialog-modal_style relative">
+
+      <div class="flex justify-between mb-4">
+
+        <h3>Search Note</h3>
+
+
+        <button id="close-search-modal-btn" class="cursor-pointer">
+          <!-- <img class="w-6 h-6" src="icon/cross.svg" alt=""> -->
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      
+      <div class="flex justify-between items-center gap-24 border border-[var(--main-black-color)] py-2 px-4 rounded-[var(--main-border-radius)]">
+        <input id="search_input" class="outline-0 border-0 capitalize" type="text" placeholder="Search title...">
+        <!-- <img class="w-6 h-6" src="icon/search.svg" alt=""> -->
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          </svg>
+
+
+      </div>
+
+      <!-- notice  -->
+      <div class="font-jost-medium text-[var(--main-black-color)] cursor-pointer px-4 py-2 rounded-[var(--main-border-radius)] text-center capitalize">Search for the title and click on it.</div>
+
+      <!-- search result -->
+      <ul id="search-res-container" class="dialog-modal_style absolute  w-full left-0 m-0! hidden top-[152px]!">
+        
+
+        <!-- result template  -->
+        <!-- <li class="search-res-item">test resultSearch for </li> -->
+
+      </ul>
+    </div>
+
+  </dialog>
+
+
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
+
+

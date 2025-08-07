@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "jost-light";
+    src: url(../font/jost/Jost-Light.ttf);
+}
+@font-face {
+    font-family: "jost-medium";
+    src: url(../font/jost/Jost-Medium.ttf);
+}
+@font-face {
+    font-family: "jost-bold";
+    src: url(../font/jost/Jost-Bold.ttf);
+}
+
+*{
+    @apply transition-all duration-300 outline-0;
+}
+
+body{
+    height: 100vh;
+}
+
+
+:root{
+    --main-black-color: #0d1b2a;
+    --second-black-color: #1b263b;
+    --main-white-color: #f8f9fa;
+    --second-white-color: #e9ecef;
+    --main-border-radius: 6px;
+    /* --main-color: #00E5FF; */
+    --main-color: #FFE082;
+
+    --static-black-color: #0d1b2a;
+    --static-white-color: #f8f9fa;
+
+    --note-color-first: #039BE5;
+    --note-color-second: #F44336;
+    --note-color-third: #76FF03;
+}
+
+.dark_theme{
+
+    /* --main-black-color: #0d1b2a; */
+    /* --main-white-color: #121417; */
+    --main-white-color: #1E201E;
+    
+    /* --second-black-color: #1b263b; */
+    --second-white-color: #464747;
+    
+    /* --main-white-color: #0d1b2a; */
+    --main-black-color: #f8f9fa;
+    
+    /* --second-white-color: #e9ecef; */
+    --second-black-color: #e9ecef;
+
+    --main-border-radius: 6px;
+    /* --main-color: #00E5FF; */
+    --main-color: #FFE082;
+
+    --static-black-color: #121417;
+    --static-white-color: #f8f9fa;
+
+   --note-color-first: #039BE5;
+    --note-color-second: #F44336;
+    --note-color-third: #76FF03;
+
+}
+
+@theme {
+    --font-jost-light: "jost-light";
+    --font-jost-medium: "jost-medium";
+    --font-jost-bold: "jost-bold";
+    
+}
+
+.container{
+    @apply mx-auto px-8 py-4;
+}
+
+.btn-style{
+    @apply bg-[var(--main-color)]  px-4 py-1.5 rounded-[var(--main-border-radius)] cursor-pointer transition-all duration-200 hover:scale-102 hover:shadow;
+}
+
+.defult_note{
+    --main-black-color: #0d1b2a;
+    --second-black-color: #1b263b;
+    --main-white-color: #f8f9fa;
+    --second-white-color: #e9ecef;
+
+}
+
+.note-container{ 
+    @apply capitalize py-2 px-4 bg-[var(--second-white-color)]  rounded-[var(--main-border-radius)] hover:shadow-md hover:scale-101 flex flex-col;
+}
+.note-title{
+    @apply text-xl border-b mb-3 font-jost-medium text-[var(--main-black-color)]!;
+}
+
+.note-description{
+    @apply max-h-24 overflow-y-auto font-jost-light text-[var(--main-black-color)] h-full;
+}
+
+
+
+.hide__mobile-menu{
+    @apply -right-72;
+}
+
+/* .dialog_style{
+    @apply bg-[var(--main-white-color)] rounded-[var(--main-border-radius)] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] py-3 px-4  shadow-[4px_4px_10px_0_var(--main-black-color)]/30;
+} */
+.dialog_style{
+    @apply bg-[var(--main-black-color)]/50 backdrop-blur-[4px] w-full h-full fixed inset-0  z-[60] justify-center items-center  ;
+}
+.dialog-modal_style{
+    @apply bg-[var(--main-white-color)] py-3 px-4 shadow-[4px_4px_10px_0_var(--main-black-color)]/30 rounded-[var(--main-border-radius)] text-[var(--main-black-color)];
+}
+
+.sticky_navbar{
+    @apply fixed bg-[var(--second-white-color)]/80 z-10 backdrop-blur-[4px] top-0 left-0;
+}
+
+.note-color-span{ 
+    @apply cursor-pointer flex justify-center items-center h-6 rounded-[var(--main-border-radius)] w-full;
+}
+
+
+
+.filter-option{
+    @apply flex justify-between items-center
+}
+
+
+.search-res-item {
+    @apply font-jost-light hover:text-[var(--static-black-color)] hover:bg-[var(--main-color)] text-[var(--main-black-color)]  cursor-pointer px-4 py-2 rounded-[var(--main-border-radius)] capitalize;
+}
+
+
+
+.search-animation {
+    animation: scale-up 2000ms ease-in-out 200ms  forwards ;
+}
+
+@keyframes scale-up {
+        0%{
+            transform: rotate(0);
+            filter: brightness(100%);
+        }
+        20%{
+            transform: rotate(2deg);
+        }
+        40%{
+            transform: rotate(-2deg);
+
+        }
+        60%{
+            transform: rotate(2deg);
+            filter: brightness(150%);
+
+        }
+        80%{
+            transform: rotate(-2deg);
+        }
+        100%{
+            transform: rotate(0);
+            filter: brightness(100%);
+
+        }
+}
