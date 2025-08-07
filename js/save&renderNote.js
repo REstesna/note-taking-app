@@ -64,6 +64,10 @@ export function sortNotesHandler(state) {
   //   notes = [];
   // }
 
+  if ( !Array.isArray(state.notes) ) {
+    state.notes = [];
+  }
+
   const sortNotes = [...state.notes].sort( (a, b) => {
 
     if (a.isPin === b.isPin) {
