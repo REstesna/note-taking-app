@@ -1,6 +1,7 @@
 import { filterBy, store } from "./app.js";
 import { showFilteringItems } from "./design.js";
 import { renderNoteHandler } from "./save&renderNote.js";
+import { closeHambergermenuHnadler } from "./shortFuncs.js";
 
 export function filterNotesHandler(e) {
 
@@ -33,7 +34,8 @@ export function filterNotesHandler(e) {
         store.setState(state);
     }
     
-    showFilteringItems()
+    showFilteringItems();
+    closeHambergermenuHnadler();
 }
 
 

@@ -1,5 +1,6 @@
 import { searchInptuElem, store } from "./app.js";
 import { closeSearchModalHandler, scrollIntoViewHandler } from "./design.js";
+import { closeHambergermenuHnadler } from "./shortFuncs.js";
 
 const searchResContainerElem = document.querySelector('#search-res-container');
 
@@ -42,6 +43,7 @@ export function showSearchResHandler(event) {
         const mainNote = document.querySelector(`#note-${event.target.closest('li.search-res-item').id}`);
 
         closeSearchModalHandler();
+        closeHambergermenuHnadler();
 
         setTimeout( () => {
             mainNote.scrollIntoView({behavior: "smooth", block: "center"});

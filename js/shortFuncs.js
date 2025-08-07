@@ -14,7 +14,7 @@ export const openHambergermenuHnadler = () => {
 export const closeHambergermenuHnadler = () => {
     document.querySelector('#hambergermenu').classList.add('hide__mobile-menu');
     document.body.classList.remove('overflow-hidden');   
-    mobileFilterParentElem.classList.remove('max-h-[174px]')
+    mobileFilterParentElem.classList.remove('max-h-[174px]');
 }
 
 

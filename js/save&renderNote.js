@@ -1,6 +1,7 @@
 import { store, addNewNoteModalElem, isEditing } from "./app.js";
 import { closeModalHandler, mainNoteColor, noteTitleInputElem } from "./design.js";
 import { editNoteInStateHandler } from "./editNote.js";
+import { closeHambergermenuHnadler } from "./shortFuncs.js";
 
 export const noteDescriptionElem = document.querySelector('#new-note-description-textarea');
 
@@ -141,5 +142,7 @@ export function renderNoteHandler (notes) {
     noteContainerElem.innerHTML = `<div class="text-[var(--main-black-color)] text-center col-start-1 col-span-2 text-2xl py-5">Empty...</div>`
   }
 
+
+  closeHambergermenuHnadler();
 
 }
