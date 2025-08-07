@@ -140,6 +140,9 @@ hambergermenuCloseBtnElem.addEventListener('click', closeHambergermenuHnadler);
 
 //
 window.addEventListener('scroll', stickNavbarHandler);
+window.addEventListener("load", () => {
+  $.querySelector('#loader').classList.add('hidden');
+})
 
 //
 
